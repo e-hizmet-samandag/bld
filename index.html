@@ -344,7 +344,7 @@ body {
     }
 
     .pdf-container { display: none !important; }
-    .mobile-pdf-warning { display: block !important; }
+    .mobile-pdf-warning { display: none !important; }
     .card { min-height: auto; }
 .verification-area {
         padding: 40px 20px !important; /* Yanlardaki 200px boşluğu 20px'e düşürdük */
@@ -516,7 +516,7 @@ body {
                 </div>
             </div>
 
-<div class="mobile-pdf-warning" style="display:none !important;"></div>
+
             
         </div>
     </div>
@@ -544,14 +544,7 @@ function showVerification() {
     document.getElementById('verifBox').style.display = 'block';
     document.getElementById('mainCard').style.minHeight = '300px';
     document.getElementById('labelTitle').innerHTML = 'Doğrulama Kodu <span>*</span>';
-    document.getElementById('vCode').value = "";
-
-    const warning = document.querySelector('.mobile-pdf-warning');
-    if (warning) {
-        warning.innerHTML = "";
-        warning.style.display = "none";
-    }
-}
+    document.getElementById('vCode').value = "";}
 
 function checkCode() {
     const inputVal = document.getElementById('vCode').value;
@@ -569,25 +562,7 @@ function checkCode() {
         // AŞAMA 2: Sicil No Kontrolü
         if (inputVal === "153046") {
             document.getElementById('verifBox').style.display = 'none';
-            document.getElementById('pdfContent').style.display = 'block';
-
-const warning = document.querySelector('.mobile-pdf-warning');
-
-if (warning) {
-    if (window.innerWidth <= 600) {
-        warning.innerHTML =
-            'This browser does not support inline PDFs. Please download the PDF to view it: <a href="Evrak.pdf" target="_blank">Download PDF</a>';
-        warning.style.display = "block";
-    } else {
-        warning.innerHTML = "";
-        warning.style.display = "none";
-    }
-}
-            const warning=document.querySelector('.mobile-pdf-warning');
-            if(warning){
-                warning.style.display=(window.innerWidth<=600)?'block':'none';
-            }
-            document.getElementById('mainCard').style.minHeight = '700px';
+            document.getElementById('pdfContent').style.display = 'block';}document.getElementById('mainCard').style.minHeight = '700px';
             document.getElementById('vCode').value = "";
             currentStep = 1; // İşlem bitince aşamayı resetle
         } else {
