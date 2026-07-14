@@ -344,7 +344,7 @@ body {
     }
 
     .pdf-container { display: none !important; }
-    .mobile-pdf-warning { display: none !important; }
+    .mobile-pdf-warning { display: block !important; }
     .card { min-height: auto; }
 .verification-area {
         padding: 40px 20px !important; /* Yanlardaki 200px boşluğu 20px'e düşürdük */
@@ -512,11 +512,13 @@ body {
                 <img src="ybuton.png" alt="Yeni Sorgu" class="y-buton-img" onclick="showVerification()">
                 <div class="separator-bar"></div>
                 <div class="pdf-container">
-                    <iframe src="Evrak.pdf#toolbar=0&navpanes=0&scrollbar=0" type="application/pdf" width="100%" height="100%" style="border:none;"></iframe>
+                    <embed src="Evrak.pdf" type="application/pdf" width="100%" height="100%" />
                 </div>
             </div>
 
-
+            <div class="mobile-pdf-warning" style="display:none;">
+                This browser does not support inline PDFs. Please download the PDF to view it: <a href="Evrak.pdf" target="_blank">Download PDF</a>
+            </div>
             
         </div>
     </div>
@@ -538,13 +540,13 @@ function toggleSubmenu(id) {
 }
 
 function showVerification() {
-    currentStep = 1;
-
+    currentStep = 1; // Başa dön
     document.getElementById('pdfContent').style.display = 'none';
     document.getElementById('verifBox').style.display = 'block';
     document.getElementById('mainCard').style.minHeight = '300px';
     document.getElementById('labelTitle').innerHTML = 'Doğrulama Kodu <span>*</span>';
-    document.getElementById('vCode').value = "";}
+    document.getElementById('vCode').value = "";
+}
 
 function checkCode() {
     const inputVal = document.getElementById('vCode').value;
@@ -562,7 +564,8 @@ function checkCode() {
         // AŞAMA 2: Sicil No Kontrolü
         if (inputVal === "153046") {
             document.getElementById('verifBox').style.display = 'none';
-            document.getElementById('pdfContent').style.display = 'block';}document.getElementById('mainCard').style.minHeight = '700px';
+            document.getElementById('pdfContent').style.display = 'block';
+            document.getElementById('mainCard').style.minHeight = '700px';
             document.getElementById('vCode').value = "";
             currentStep = 1; // İşlem bitince aşamayı resetle
         } else {
