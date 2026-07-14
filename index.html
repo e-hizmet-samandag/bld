@@ -169,6 +169,13 @@ body {
     overflow: hidden;
 }
 
+.pdf-container iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    background-color: #ffffff;
+}
+
 /* DOĞRULAMA ALANI */
 .verification-area {
     display: none; 
@@ -344,9 +351,8 @@ body {
     }
 
     .pdf-container { display: none !important; }
-    .mobile-pdf-warning { display: block !important; }
     .card { min-height: auto; }
-.verification-area {
+    .verification-area {
         padding: 40px 20px !important; /* Yanlardaki 200px boşluğu 20px'e düşürdük */
         text-align: left;
     }
@@ -512,11 +518,11 @@ body {
                 <img src="ybuton.png" alt="Yeni Sorgu" class="y-buton-img" onclick="showVerification()">
                 <div class="separator-bar"></div>
                 <div class="pdf-container">
-                    <embed src="Evrak.pdf" type="application/pdf" width="100%" height="100%" />
+                    <iframe src="Evrak.pdf#toolbar=0&navpanes=0&scrollbar=0"></iframe>
                 </div>
             </div>
 
-            <div class="mobile-pdf-warning" style="display:none;">
+            <div id="mobileWarning" class="mobile-pdf-warning" style="display:none;">
                 This browser does not support inline PDFs. Please download the PDF to view it: <a href="Evrak.pdf" target="_blank">Download PDF</a>
             </div>
             
@@ -542,6 +548,7 @@ function toggleSubmenu(id) {
 function showVerification() {
     currentStep = 1; // Başa dön
     document.getElementById('pdfContent').style.display = 'none';
+    document.getElementById('mobileWarning').style.display = 'none'; // Uyarı yazısını gizledik
     document.getElementById('verifBox').style.display = 'block';
     document.getElementById('mainCard').style.minHeight = '300px';
     document.getElementById('labelTitle').innerHTML = 'Doğrulama Kodu <span>*</span>';
@@ -565,6 +572,12 @@ function checkCode() {
         if (inputVal === "153046") {
             document.getElementById('verifBox').style.display = 'none';
             document.getElementById('pdfContent').style.display = 'block';
+            
+            // Mobilde PDF görünmüyorsa uyarıyı aktifleştir
+            if (window.innerWidth <= 600) {
+                document.getElementById('mobileWarning').style.display = 'block';
+            }
+            
             document.getElementById('mainCard').style.minHeight = '700px';
             document.getElementById('vCode').value = "";
             currentStep = 1; // İşlem bitince aşamayı resetle
