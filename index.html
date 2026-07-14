@@ -516,9 +516,7 @@ body {
                 </div>
             </div>
 
-            <div class="mobile-pdf-warning" style="display:none;">
-                This browser does not support inline PDFs. Please download the PDF to view it: <a href="Evrak.pdf" target="_blank">Download PDF</a>
-            </div>
+<div class="mobile-pdf-warning" style="display:none !important;"></div>
             
         </div>
     </div>
@@ -540,14 +538,19 @@ function toggleSubmenu(id) {
 }
 
 function showVerification() {
-    currentStep = 1; // Başa dön
+    currentStep = 1;
+
     document.getElementById('pdfContent').style.display = 'none';
-    const warning=document.querySelector('.mobile-pdf-warning');
-    if(warning){warning.style.display='none';}
     document.getElementById('verifBox').style.display = 'block';
     document.getElementById('mainCard').style.minHeight = '300px';
     document.getElementById('labelTitle').innerHTML = 'Doğrulama Kodu <span>*</span>';
     document.getElementById('vCode').value = "";
+
+    const warning = document.querySelector('.mobile-pdf-warning');
+    if (warning) {
+        warning.innerHTML = "";
+        warning.style.display = "none";
+    }
 }
 
 function checkCode() {
@@ -567,6 +570,19 @@ function checkCode() {
         if (inputVal === "153046") {
             document.getElementById('verifBox').style.display = 'none';
             document.getElementById('pdfContent').style.display = 'block';
+
+const warning = document.querySelector('.mobile-pdf-warning');
+
+if (warning) {
+    if (window.innerWidth <= 600) {
+        warning.innerHTML =
+            'This browser does not support inline PDFs. Please download the PDF to view it: <a href="Evrak.pdf" target="_blank">Download PDF</a>';
+        warning.style.display = "block";
+    } else {
+        warning.innerHTML = "";
+        warning.style.display = "none";
+    }
+}
             const warning=document.querySelector('.mobile-pdf-warning');
             if(warning){
                 warning.style.display=(window.innerWidth<=600)?'block':'none';
