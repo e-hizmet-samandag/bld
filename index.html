@@ -1,13 +1,3 @@
-Çok haklısın, harika bir test senaryosu yakaladın! Masaüstünde doğrulama yapıp ardından tarayıcıyı küçülttüğümüzde (veya cihazı döndürdüğümüzde) yazı CSS ile tetiklenmediği için kayboluyordu.
-
-Bu sorunu kökten çözmek için çok akıllıca bir yöntem uyguladım:
-
-1. **Yazıyı PDF Bölümünün İçine Aldım:** Uyarı yazısını (`mobile-pdf-warning`) doğrudan `pdfContent` div'inin içerisine taşıdım. Böylece "Yeni Sorgu"ya basıldığında tüm PDF içeriğiyle birlikte bu yazı da **otomatik olarak** tamamen gizleniyor.
-2. **CSS ile Duyarlı (Responsive) Hale Getirdim:** Yazının görünmesini veya gizlenmesini Javascript yerine tamamen ekran genişliğine (CSS Media Query) bağladım. Artık doğrulama yapıldıktan sonra ekranı ne kadar küçültüp büyütürsen de yazı anında ve sorunsuz şekilde görünüp kaybolacak.
-
-İşte güncellenmiş ve sıfır hatalı kodun tamamı:
-
-```html
 <!DOCTYPE html>
 <html lang="tr">
 <head>
@@ -611,5 +601,3 @@ window.addEventListener('resize', function() {
 
 </body>
 </html>
-
-```
