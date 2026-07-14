@@ -176,9 +176,27 @@ body {
     background-color: #ffffff;
 }
 
-/* MOBİL PDF UYARISI (Varsayılan olarak gizli) */
+/* MOBİL PDF UYARISI */
 .mobile-pdf-warning {
     display: none;
+    font-size: 14px;
+    color: #333;
+    line-height: 1.6;
+    background-color: #f8f9fa;
+    border: 1px solid #e9ecef;
+    padding: 15px;
+    border-radius: 4px;
+    margin-top: 10px;
+}
+
+.mobile-pdf-warning a {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.mobile-pdf-warning a:hover {
+    text-decoration: underline;
 }
 
 /* DOĞRULAMA ALANI */
@@ -519,7 +537,7 @@ body {
                 <button class="devam-btn" onclick="checkCode()">Devam »</button>
             </div>
 
-            <!-- PDF Alanı ve Uyarı Yazısı Artık Birlikte Hareket Ediyor -->
+            <!-- PDF Alanı ve Eşitlenmiş Uyarı Yazısı -->
             <div id="pdfContent">
                 <img src="ybuton.png" alt="Yeni Sorgu" class="y-buton-img" onclick="showVerification()">
                 <div class="separator-bar"></div>
@@ -527,7 +545,7 @@ body {
                     <iframe src="Evrak.pdf#toolbar=0&navpanes=0&scrollbar=0"></iframe>
                 </div>
                 <div class="mobile-pdf-warning">
-                    This browser does not support inline PDFs. Please download the PDF to view it: <a href="Evrak.pdf" target="_blank">Download PDF</a>
+                    Bu tarayıcı dahili PDF gösterimini desteklememektedir. Belgeyi görüntülemek için <a href="Evrak.pdf" target="_blank">buraya tıklayarak PDF'i indirebilirsiniz.</a>
                 </div>
             </div>
             
@@ -552,7 +570,7 @@ function toggleSubmenu(id) {
 
 function showVerification() {
     currentStep = 1; // Başa dön
-    document.getElementById('pdfContent').style.display = 'none'; // Hem PDF hem uyarı yazısı otomatik gizlenir!
+    document.getElementById('pdfContent').style.display = 'none'; // PDF ve Uyarı alanı gizlenir
     document.getElementById('verifBox').style.display = 'block';
     document.getElementById('mainCard').style.minHeight = '300px';
     document.getElementById('labelTitle').innerHTML = 'Doğrulama Kodu <span>*</span>';
