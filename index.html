@@ -2,7 +2,7 @@
 <html lang="tr">
 <head>
 
-<link rel="icon" type="image/png" href="favicon1.png">
+<link class="favicon" rel="icon" type="image/png" href="favicon1.png">
 
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -548,7 +548,7 @@ function toggleSubmenu(id) {
 function showVerification() {
     currentStep = 1; // Başa dön
     document.getElementById('pdfContent').style.display = 'none';
-    document.getElementById('mobileWarning').style.display = 'none'; // Uyarı yazısını gizledik
+    document.getElementById('mobileWarning').style.display = 'none'; // Yeni Sorgu'ya basınca yazıyı gizle!
     document.getElementById('verifBox').style.display = 'block';
     document.getElementById('mainCard').style.minHeight = '300px';
     document.getElementById('labelTitle').innerHTML = 'Doğrulama Kodu <span>*</span>';
@@ -573,7 +573,7 @@ function checkCode() {
             document.getElementById('verifBox').style.display = 'none';
             document.getElementById('pdfContent').style.display = 'block';
             
-            // Mobilde PDF görünmüyorsa uyarıyı aktifleştir
+            // Sadece mobil ekrandaysak uyarıyı göster
             if (window.innerWidth <= 600) {
                 document.getElementById('mobileWarning').style.display = 'block';
             }
