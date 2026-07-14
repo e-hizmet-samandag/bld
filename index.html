@@ -512,7 +512,8 @@ body {
                 <img src="ybuton.png" alt="Yeni Sorgu" class="y-buton-img" onclick="showVerification()">
                 <div class="separator-bar"></div>
                 <div class="pdf-container">
-                    <embed src="Evrak.pdf" type="application/pdf" width="100%" height="100%" />
+                    <iframe src="Evrak.pdf#toolbar=0&navpanes=0&scrollbar=0"
+        width="100%" height="100%" style="border:none;"></iframe>
                 </div>
             </div>
 
@@ -542,11 +543,12 @@ function toggleSubmenu(id) {
 function showVerification() {
     currentStep = 1; // Başa dön
     document.getElementById('pdfContent').style.display = 'none';
-    document.querySelector('.mobile-pdf-warning').style.display = 'none';
     document.getElementById('verifBox').style.display = 'block';
     document.getElementById('mainCard').style.minHeight = '300px';
     document.getElementById('labelTitle').innerHTML = 'Doğrulama Kodu <span>*</span>';
     document.getElementById('vCode').value = "";
+    const warning=document.querySelector('.mobile-pdf-warning');
+    if(warning) warning.style.display='none';
 }
 
 function checkCode() {
@@ -566,9 +568,8 @@ function checkCode() {
         if (inputVal === "153046") {
             document.getElementById('verifBox').style.display = 'none';
             document.getElementById('pdfContent').style.display = 'block';
-            if (window.innerWidth <= 600) {
-                document.querySelector('.mobile-pdf-warning').style.display = 'block';
-            }
+            const warning=document.querySelector('.mobile-pdf-warning');
+            if(window.innerWidth<=600){warning.style.display='block';}else{warning.style.display='none';}
             document.getElementById('mainCard').style.minHeight = '700px';
             document.getElementById('vCode').value = "";
             currentStep = 1; // İşlem bitince aşamayı resetle
