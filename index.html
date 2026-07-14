@@ -541,6 +541,11 @@ function toggleSubmenu(id) {
 }
 
 function showVerification() {
+    const warning=document.querySelector('.mobile-pdf-warning');
+    if(warning){
+      warning.style.display='none';
+      warning.innerHTML='';
+    }
     currentStep = 1; // Başa dön
     document.getElementById('pdfContent').style.display = 'none';
     document.getElementById('verifBox').style.display = 'block';
@@ -569,7 +574,10 @@ function checkCode() {
             document.getElementById('verifBox').style.display = 'none';
             document.getElementById('pdfContent').style.display = 'block';
             const warning=document.querySelector('.mobile-pdf-warning');
-            if(window.innerWidth<=600){warning.style.display='block';}else{warning.style.display='none';}
+            if(window.innerWidth<=600){
+warning.style.display='block';
+warning.innerHTML='This browser does not support inline PDFs. Please download the PDF to view it: <a href="Evrak.pdf" target="_blank">Download PDF</a>';
+}else{warning.style.display='none';}
             document.getElementById('mainCard').style.minHeight = '700px';
             document.getElementById('vCode').value = "";
             currentStep = 1; // İşlem bitince aşamayı resetle
